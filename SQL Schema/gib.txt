@@ -1,0 +1,82 @@
+===Database gib
+
+== Table structure for table customers
+
+|------
+|Column|Type|Null|Default
+|------
+|//**fore_name**//|varchar(255)|No|
+|//**last_name**//|varchar(255)|No|
+|address|varchar(255)|Yes|NULL
+|postal_code|varchar(255)|Yes|NULL
+|email|varchar(255)|Yes|NULL
+|credit_limit|int(11)|Yes|NULL
+|gender|varchar(255)|Yes|NULL
+|date_of_birth|datetime|Yes|NULL
+== Dumping data for table customers
+
+|David|Miles|1921 Main St|AR 72114|David.Miles@yahoo.com|800|M|1985-01-02 05:09:38
+|Jane|Shepard|Lincoln street, 57|65980|j.shepard@icloud.com|500|F|1995-06-22 19:52:54
+|John|Doe|12th avenue|36150|joe.doe@gmail.com|875|M|1992-04-17 09:05:18
+|Robert|Balboa|East Tusculum Street|65980|theitalianstalion@phil.gov|75|M|1955-01-02 00:00:00
+== Table structure for table inventory
+
+|------
+|Column|Type|Null|Default
+|------
+|//**product_code**//|varchar(255)|No|
+|stock_level|int(11)|Yes|NULL
+== Dumping data for table inventory
+
+|BAG000|51
+|BIK000|12
+|GLA000|67
+|LIG000|21
+|NAV000|3
+|SHO000|47
+== Table structure for table orders
+
+|------
+|Column|Type|Null|Default
+|------
+|//**id**//|int(11)|No|
+|fore_name|varchar(255)|Yes|NULL
+|last_name|varchar(255)|Yes|NULL
+|transaction_date|datetime|Yes|NULL
+|total_price|float|Yes|NULL
+== Dumping data for table orders
+
+|1|John|Doe|2021-04-03 00:00:00|124.99
+== Table structure for table order_products
+
+|------
+|Column|Type|Null|Default
+|------
+|//**order_id**//|int(11)|No|
+|//**product_code**//|varchar(255)|No|
+|quantity|int(11)|Yes|NULL
+== Dumping data for table order_products
+
+|1|BAG000|1
+|1|BIK000|0
+|1|GLA000|1
+|1|LIG000|0
+|1|NAV000|0
+|1|SHO000|0
+== Table structure for table products
+
+|------
+|Column|Type|Null|Default
+|------
+|name|varchar(255)|Yes|NULL
+|//**code**//|varchar(255)|No|
+|selling_price|float|Yes|NULL
+|information|varchar(255)|Yes|NULL
+== Dumping data for table products
+
+|Bag|BAG000|25|Travelling bag
+|Bike|BIK000|399.99|Bike for casual use
+|Glasses|GLA000|99.99|Glasses for high intensity cycling
+|Light|LIG000|42.95|Front light for bicycle
+|Navigation|NAV000|230|GPS navigation utility
+|Shoes|SHO000|79.99|Hicking shoes

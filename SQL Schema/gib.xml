@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.0.2
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1:3306
+- Generation Time: Apr 13, 2021 at 08:00 PM
+- Server version: 5.7.31
+- PHP Version: 7.3.21
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="gib" collation="latin1_general_cs" charset="latin1">
+            <pma:table name="customers">
+                CREATE TABLE `customers` (
+                  `fore_name` varchar(255) COLLATE latin1_general_cs NOT NULL,
+                  `last_name` varchar(255) COLLATE latin1_general_cs NOT NULL,
+                  `address` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `postal_code` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `email` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `credit_limit` int(11) DEFAULT NULL,
+                  `gender` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `date_of_birth` datetime DEFAULT NULL,
+                  PRIMARY KEY (`fore_name`,`last_name`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+            </pma:table>
+            <pma:table name="inventory">
+                CREATE TABLE `inventory` (
+                  `product_code` varchar(255) COLLATE latin1_general_cs NOT NULL,
+                  `stock_level` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`product_code`),
+                  CONSTRAINT `FK_Inventory_ProductCode` FOREIGN KEY (`product_code`) REFERENCES `products` (`code`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+            </pma:table>
+            <pma:table name="orders">
+                CREATE TABLE `orders` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `fore_name` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `last_name` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `transaction_date` datetime DEFAULT NULL,
+                  `total_price` float DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `FK_Name` (`fore_name`,`last_name`),
+                  CONSTRAINT `FK_Name` FOREIGN KEY (`fore_name`, `last_name`) REFERENCES `customers` (`fore_name`, `last_name`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+            </pma:table>
+            <pma:table name="order_products">
+                CREATE TABLE `order_products` (
+                  `order_id` int(11) NOT NULL,
+                  `product_code` varchar(255) COLLATE latin1_general_cs NOT NULL,
+                  `quantity` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`order_id`,`product_code`),
+                  KEY `FK_OrderProducts_ProductCode` (`product_code`),
+                  CONSTRAINT `FK_OrderId` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                  CONSTRAINT `FK_OrderProducts_ProductCode` FOREIGN KEY (`product_code`) REFERENCES `products` (`code`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+            </pma:table>
+            <pma:table name="products">
+                CREATE TABLE `products` (
+                  `name` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  `code` varchar(255) COLLATE latin1_general_cs NOT NULL,
+                  `selling_price` float DEFAULT NULL,
+                  `information` varchar(255) COLLATE latin1_general_cs DEFAULT NULL,
+                  PRIMARY KEY (`code`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'gib'
+    -->
+    <database name="gib">
+        <!-- Table customers -->
+        <table name="customers">
+            <column name="fore_name">David</column>
+            <column name="last_name">Miles</column>
+            <column name="address">1921 Main St</column>
+            <column name="postal_code">AR 72114</column>
+            <column name="email">David.Miles@yahoo.com</column>
+            <column name="credit_limit">800</column>
+            <column name="gender">M</column>
+            <column name="date_of_birth">1985-01-02 05:09:38</column>
+        </table>
+        <table name="customers">
+            <column name="fore_name">Jane</column>
+            <column name="last_name">Shepard</column>
+            <column name="address">Lincoln street, 57</column>
+            <column name="postal_code">65980</column>
+            <column name="email">j.shepard@icloud.com</column>
+            <column name="credit_limit">500</column>
+            <column name="gender">F</column>
+            <column name="date_of_birth">1995-06-22 19:52:54</column>
+        </table>
+        <table name="customers">
+            <column name="fore_name">John</column>
+            <column name="last_name">Doe</column>
+            <column name="address">12th avenue</column>
+            <column name="postal_code">36150</column>
+            <column name="email">joe.doe@gmail.com</column>
+            <column name="credit_limit">875</column>
+            <column name="gender">M</column>
+            <column name="date_of_birth">1992-04-17 09:05:18</column>
+        </table>
+        <table name="customers">
+            <column name="fore_name">Robert</column>
+            <column name="last_name">Balboa</column>
+            <column name="address">East Tusculum Street</column>
+            <column name="postal_code">65980</column>
+            <column name="email">theitalianstalion@phil.gov</column>
+            <column name="credit_limit">75</column>
+            <column name="gender">M</column>
+            <column name="date_of_birth">1955-01-02 00:00:00</column>
+        </table>
+        <!-- Table inventory -->
+        <table name="inventory">
+            <column name="product_code">BAG000</column>
+            <column name="stock_level">51</column>
+        </table>
+        <table name="inventory">
+            <column name="product_code">BIK000</column>
+            <column name="stock_level">12</column>
+        </table>
+        <table name="inventory">
+            <column name="product_code">GLA000</column>
+            <column name="stock_level">67</column>
+        </table>
+        <table name="inventory">
+            <column name="product_code">LIG000</column>
+            <column name="stock_level">21</column>
+        </table>
+        <table name="inventory">
+            <column name="product_code">NAV000</column>
+            <column name="stock_level">3</column>
+        </table>
+        <table name="inventory">
+            <column name="product_code">SHO000</column>
+            <column name="stock_level">47</column>
+        </table>
+        <!-- Table orders -->
+        <table name="orders">
+            <column name="id">1</column>
+            <column name="fore_name">John</column>
+            <column name="last_name">Doe</column>
+            <column name="transaction_date">2021-04-03 00:00:00</column>
+            <column name="total_price">124.99</column>
+        </table>
+        <!-- Table order_products -->
+        <table name="order_products">
+            <column name="order_id">1</column>
+            <column name="product_code">BAG000</column>
+            <column name="quantity">1</column>
+        </table>
+        <table name="order_products">
+            <column name="order_id">1</column>
+            <column name="product_code">BIK000</column>
+            <column name="quantity">0</column>
+        </table>
+        <table name="order_products">
+            <column name="order_id">1</column>
+            <column name="product_code">GLA000</column>
+            <column name="quantity">1</column>
+        </table>
+        <table name="order_products">
+            <column name="order_id">1</column>
+            <column name="product_code">LIG000</column>
+            <column name="quantity">0</column>
+        </table>
+        <table name="order_products">
+            <column name="order_id">1</column>
+            <column name="product_code">NAV000</column>
+            <column name="quantity">0</column>
+        </table>
+        <table name="order_products">
+            <column name="order_id">1</column>
+            <column name="product_code">SHO000</column>
+            <column name="quantity">0</column>
+        </table>
+        <!-- Table products -->
+        <table name="products">
+            <column name="name">Bag</column>
+            <column name="code">BAG000</column>
+            <column name="selling_price">25</column>
+            <column name="information">Travelling bag</column>
+        </table>
+        <table name="products">
+            <column name="name">Bike</column>
+            <column name="code">BIK000</column>
+            <column name="selling_price">399.99</column>
+            <column name="information">Bike for casual use</column>
+        </table>
+        <table name="products">
+            <column name="name">Glasses</column>
+            <column name="code">GLA000</column>
+            <column name="selling_price">99.99</column>
+            <column name="information">Glasses for high intensity cycling</column>
+        </table>
+        <table name="products">
+            <column name="name">Light</column>
+            <column name="code">LIG000</column>
+            <column name="selling_price">42.95</column>
+            <column name="information">Front light for bicycle</column>
+        </table>
+        <table name="products">
+            <column name="name">Navigation</column>
+            <column name="code">NAV000</column>
+            <column name="selling_price">230</column>
+            <column name="information">GPS navigation utility</column>
+        </table>
+        <table name="products">
+            <column name="name">Shoes</column>
+            <column name="code">SHO000</column>
+            <column name="selling_price">79.99</column>
+            <column name="information">Hicking shoes</column>
+        </table>
+    </database>
+</pma_xml_export>
